@@ -1,9 +1,9 @@
 *{
-    margin: 0;
-    padding: 0;
+ 
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
+ 
 }
 
 
@@ -16,6 +16,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    
  
     
 }
@@ -26,23 +27,24 @@ body{
 ------------- Grid area  ----------------
 */
 
-div.col{
-    
-    margin: 10px;
+/* div.row {
+    background-color: green;
+} */
+
+div.col-lg-2, div.col-lg-3{
+    margin: 20px;
     background: #ccc;
     border-radius: 5px;
     border: 0.2px dotted #c6c6c6;
     box-shadow: 0px 4px 4px -2px rgba(0,0,0,.5);
-    padding-top: 10px;
+    padding: 20px;
+    
 }
 #checkbox-area {
     margin-top: 10px;
 }
 
-input#parabrisa-dianteiro, input#car{
-    background: red;
-    size: 20px;
-}
+
 h3{
     font-size: 1em;
     font-weight: bolder;
@@ -115,4 +117,6 @@ input:checked + select#porta-malas.custom-select {
     animation-name: transition;
     }
   } */
+
+
 

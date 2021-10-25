@@ -22,12 +22,17 @@
     <title>OS</title>
   </head>
   <body>
-
+ 
     <header>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary"><!--Início Navbar-->
+      <nav class="navbar navbar-expand-md navbar-dark bg-secondary"><!--Início Navbar-->
         
         <div class="container">
+
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item active">
@@ -48,13 +53,17 @@
         
       </nav> <!--Fim Nav-bar-->
 
+     
+     
+
+
     </header>
 
     <section><!--Início Section com a imagem do carro-->
       <div class="" id="imagem">
         <div class="">
           <div class="">
-            <h1 class=""><img src="./img/checklist2.png" alt=""></h1>
+            <h1 class=""><img class="img-fluid" src="./img/checklist2.png" alt=""></h1>
           </div>
         </div>
       </div>
@@ -63,123 +72,108 @@
  
     <section><!--Início Section formumlário-->
       <form action=""><!-- Início formulário-->
-        <div class="container d-flex"><!-- In´cio Container-->
-          
-          <div class="col-md-12" id="form-items"> <!--Grid 4 inputs-->
+        <div class="container " ><!-- In´cio Container-->
+         <div class="row" id=""> <!--Grid 4 inputs-->
             
-            <div class="row ">
-
-              
-              <div class="col "><!--Visão topo-->
+              <div class="col-lg-3 colunas"><!--Visão topo-->
+                
+               <div class="align-self-center">
                 <h3>Visão topo</h3>
-                <div class="align-self-center form-group">
 
-                  <!--Teste de checkbox-->
-<!-- 
-                  <input id="teste" type="checkbox" value="My Checkbox" />
-                  Porta Malas
-                  <div class="toggle">
-                    <select onclick="" class="custom-select" name="porta-malas" id="porta-malas">
-                      <option value="valor1">Amassado</option>
-                      <option value="valor1" selected>Não amassado</option>
-                    </select>
-                  </div> -->
-
-
-                  
-                  <div>
-                    <div class="custom-control custom-checkbox" >
-                      <div>
-  
-                        <div>
-                          <input class="custom-control-input" checked="porta-malas" type="checkbox" name="porta-malas" id="porta-mala" >
-                          <label class="custom-control-label" for="porta-mala">Porta malas</label>
-                        </div>
-                     
-                      </div>
+                <div>
+                  <div class="custom-control custom-checkbox" >
                       
-                    </div>
-                    
-                    <div class="div-select " id="select" >
-                      <select onclick="" class="custom-select" name="porta-malas" id="">
-                        <option value="valor1">Amassado</option>
-                        <option value="valor2" selected>Não amassado</option>
-                      </select>
-                    </div>
+                      <div>
+                        <input class="custom-control-input" checked="porta-malas" type="checkbox" name="porta-malas" id="porta-mala" >
+                        <label class="custom-control-label" for="porta-mala">Porta malas</label>
+                      </div>
                    
                   </div>
                   
-                  <div>
-                    <div class="custom-control custom-checkbox" >
-                      <div>
-  
-                        <div>
-                          <input class="custom-control-input" type="checkbox" name="parabrisa-traseiro" id="parabrisa-traseiro" >
-                          <label class="custom-control-label" for="parabrisa-traseiro">Para-brisa traseiro</label>
-                        </div>
-                     
-                      </div>
-                      
-                    </div>
-                    
-                    <div class="div-select">
-                      <select class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                        <option value="valor1">Amassado</option>
-                        <option value="valor2" selected>Não amassado</option>
-                      </select>
-                    </div>
-                  </div>
-                  
+                  <div class="div-select " id="select" >
 
-                  <div>
-                    <div class="custom-control custom-checkbox" >
-                      <div>
-  
-                        <div>
-                          <input class="custom-control-input" type="checkbox" name="teto" id="teto" >
-                          <label class="custom-control-label" for="teto">Teto</label>
-                        </div>
-                     
-                      </div>
-                      
-                    </div>
+                    <select onclick="" class="custom-select" name="porta-malas" id="">
+                      <option value="valor1">Amassado</option>
+                      <option value="valor2" selected>Não amassado</option>
+                    </select>
                     
-                    <div class="div-select">
-                      <select class="custom-select" name="teto" id="teto">
-                        <option value="valor1">Amassado</option>
-                        <option value="valor2" selected>Não amassado</option>
-                      </select>
-                    </div>
                   </div>
-
                  
-
-                  <div class="custom-control custom-checkbox" id="checkbox-area">
+                </div>
+                
+                <div>
+                  <div class="custom-control custom-checkbox" >
                     <div>
 
                       <div>
-                        <input class="custom-control-input" type="checkbox" name="parabrisa-dianteiro" id="parabrisa-dianteiro" >
-                        <label class="custom-control-label" for="parabrisa-dianteiro">Para-brisa Dianteiro</label>
+                        <input class="custom-control-input" type="checkbox" name="parabrisa-traseiro" id="parabrisa-traseiro" >
+                        <label class="custom-control-label" for="parabrisa-traseiro">Para-brisa traseiro</label>
                       </div>
-                     
-                      <div>
-                        <input class="custom-control-input" type="checkbox" name="capo"  id="capo" >
-                        <label class="custom-control-label" for="capo">Capô</label>
-                      </div>
-                      
+                   
                     </div>
                     
                   </div>
+                  
+                  <div class="div-select">
+                    <select class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
+                      <option value="valor1">Amassado</option>
+                      <option value="valor2" selected>Não amassado</option>
+                    </select>
+                  </div>
+                </div>
                 
+
+                <div>
+                  <div class="custom-control custom-checkbox" >
+                    <div>
+
+                      <div>
+                        <input class="custom-control-input" type="checkbox" name="teto" id="teto" >
+                        <label class="custom-control-label" for="teto">Teto</label>
+                      </div>
+                   
+                    </div>
+                    
+                  </div>
+                  
+                  <div class="div-select">
+                    <select class="custom-select" name="teto" id="teto">
+                      <option value="valor1">Amassado</option>
+                      <option value="valor2" selected>Não amassado</option>
+                    </select>
+                  </div>
+                </div>
+
+               
+
+                <div class="custom-control custom-checkbox" id="checkbox-area">
+                  <div>
+
+                    <div>
+                      <input class="custom-control-input" type="checkbox" name="parabrisa-dianteiro" id="parabrisa-dianteiro" >
+                      <label class="custom-control-label" for="parabrisa-dianteiro">Para-brisa Dianteiro</label>
+                    </div>
+                   
+                    <div>
+                      <input class="custom-control-input" type="checkbox" name="capo"  id="capo" >
+                      <label class="custom-control-label" for="capo">Capô</label>
+                    </div>
+                    
+                  </div>
                   
                 </div>
+              
+                
+        
+               </div>
+         
     
               </div><!--Fim visão topo-->
      
-              <div class="col "><!--Visão traseira-->
-                <h3>Visão traseira</h3>
-                <div class="align-self-center form-group">
-                  
+              <div class="col-lg-2 colunas"><!--Visão traseira-->
+                
+                <div class="align-self-center ">
+                  <h3>Visão traseira</h3>
                
 
             
@@ -214,10 +208,10 @@
     
               </div><!--Fim traseira-->
      
-              <div class="col "><!--Visão dianteira-->
-                <h3>Visão Dianteira</h3>
-                <div class="align-self-center form-group">
-                  
+              <div class="col-lg-2 colunas"><!--Visão dianteira-->
+                
+                <div class="align-self-center ">
+                  <h3>Visão Dianteira</h3>
                
 
             
@@ -260,9 +254,10 @@
     
               </div><!--Fim visão dianteira-->
      
-              <div class="col "><!--Visão lado direito-->
-                <h3>Visão Lado Direito</h3>
-                <div class="align-self-center form-group">
+              <div class="col-lg-3 colunas"><!--Visão lado direito-->
+               
+                <div class="align-self-center ">
+                  <h3>Visão Lado Direito</h3>
                   
                   <div class="custom-control custom-checkbox" id="checkbox-area">
                     <div>
@@ -342,8 +337,9 @@
                 </div>
     
               </div><!--Fim visão lado direito-->
+           
      
-            </div>
+            
     
           </div><!-- Fim Grid 4 inputs-->
           
@@ -357,7 +353,46 @@
       
     </footer><!--Fim Footer-->
   
+    <!--Media queries-->
+    
+    <style type="text/css">
+            
 
+               /* Small devices (landscape phones, 576px and up) */
+              @media (min-width: 576px) { 
+                h3{
+                  font-size: 1.2em;
+                }
+              }
+
+               /* Medium devices (tablets, 768px and up) */
+              @media (min-width: 768px) {  
+               
+              }
+
+               /* Large devices (desktops, 992px and up) */
+              @media (min-width: 992px) {  
+                label{
+                  font-size: 0.7em;
+                }
+                h3{
+                  font-size: 0.8em;
+                }
+              }
+
+               /* Extra large devices (large desktops, 1200px and up) */
+              @media (min-width: 1200px) { 
+                label{
+                  font-size: 1em;
+                }
+                h3{
+                  font-size: 1em;
+                }
+               }
+      
+
+
+    </style>
  
   
 
@@ -365,18 +400,23 @@
 
     <script>
 
-      function mostrar (){
-        var marcado = document.querySelector("input[type=checkbox]:checked");
-        if(document.querySelector("input[type=checkbox]:checked")){
-            
-        }
-       
+     
+          
 
-        let checagemDoCheckbox = setInterval(function() { // A cada 0.1s faz a rotina
-        document.querySelector('#porta-mala').checked ? document.querySelector('#porta-malas').disabled = false : document.querySelector('#porta-malas').disabled = true;
-        }, 100);
-        document.querySelector('#porta-mala').addEventListener('change', function(){console.log('Clicaram em mim, agora estou: ' + (this.checked ? 'Ativo' : 'Inativo'))})
-      }
+        
+          document.querySelector('#porta-mala').addEventListener('change', function(){
+
+            if(this.checked){ 
+            document.querySelector('#porta-malas').disabled = false; 
+            } else { 
+            document.querySelector('#porta-malas').disabled = true; 
+            }
+
+          
+          })
+        
+      
+     
     </script>
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
