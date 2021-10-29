@@ -101,24 +101,6 @@ input:checked + select#porta-malas.custom-select {
 }
 
 
-/*  @keyframes transition {
-    from {
-        color: #000;
-        border-bottom: 0.5px solid lightgray;
-    }
-  
-    to {
-        background: url(../img/caret-right-solid.svg) no-repeat;
-    padding-left: 20px;
-    color: green;
-    font-weight: bold;
-    border-bottom: 1px solid green;
-    animation-name: transition;
-    }
-  } */
-
-
-
 
   #sig-canvas {
     border: 2px dotted #CCCCCC;
