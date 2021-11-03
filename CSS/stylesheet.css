@@ -70,6 +70,15 @@ input.form-control{
 }
 
 /* 
+------------- Modal  ----------------
+*/
+.modal-header h5 {
+    text-transform: uppercase;
+}
+.modal-body label {
+    text-transform: uppercase;
+}
+/* 
 ------------- Rodapé  ----------------
 */
 

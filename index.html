@@ -23,6 +23,61 @@
   </head>
   <body>
  
+ 
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal-prev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informações do veículo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="placa">Placa</label>
+            <input type="text" class="form-control" id="placa" placeholder="Ex: ABC1234">
+          </div>
+          <div class="form-group">
+            <label for="cor">Cor</label>
+            <input type="text" class="form-control" id="cor" placeholder="Ex: Azul">
+          </div>
+          <div class="form-group">
+            <label for="ano-modelo">Ano Modelo</label>
+            <input type="number" class="form-control" id="ano-modelo" placeholder="Ex: 1998">
+          </div>
+          <div class="form-group">
+            <label for="ano-fab">Ano Fabricação</label>
+            <input type="number" class="form-control" id="ano-fab" placeholder="Ex: 1998">
+          </div>
+          <div class="form-group">
+            <label for="chassi">Chassi</label>
+            <input type="text" class="form-control" id="chassi" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="renavam">RENAVAM</label>
+            <input type="text" class="form-control" id="renavam" placeholder="">
+          </div>
+     
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
     <header>
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-secondary"><!--Início Navbar-->
@@ -599,12 +654,25 @@
 
     <!-- JavaScript (Opcional) -->
 
-    <script>
+  
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
 
+      var placa = document.getElementById("#placa")
      
+      if (placa == null){
+        $('#modal-prev').modal('show');
+      }
+
+      
+
           
 
-        
+         
           document.querySelector('#porta-mala').addEventListener('change', function(){
 
             if(this.checked){ 
@@ -614,16 +682,10 @@
             }
 
           
-          })
+          }) 
         
       
      
     </script>
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    
-    
   </body>
 </html>
