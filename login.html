@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- HTML5Shiv -->
     <!--[if lt IE 9]>
@@ -17,152 +20,160 @@
     <![endif]-->
 
     <!-- Estilo customizado -->
-    
+
 
     <title>Login</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="./CSS/login.css">
-    
-  </head>
-  <body class="">
+    <link rel="stylesheet" type="text/css" href="./CSS/loader.css">
 
- 
+</head>
+
+<body class="">
     <header>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary"><!--Início Navbar-->
-        
-        <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <!--Início Navbar-->
 
-          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <div class="container">
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Formulário <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Histórico</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Observações</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="#">Processo</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </nav> <!--Fim Nav-bar-->
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-     
-     
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Formulário <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Histórico</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Observações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">Processo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+        <!--Fim Nav-bar-->
+
+
+
 
 
     </header>
 
-    
-    <section><!--Section formulários-->
-      <div class="container"><!--Início container-->
-        
-        <div class="d-flex justify-content-center">
-          <div class="align-self-center">
-            <div class="text-center" id="">
-              <img src="/img/logo.jpeg" id="logo"  alt="">
+
+    <section>
+        <!--Section formulários-->
+        <div class="container">
+            <!--Início container-->
+
+            <div class="d-flex justify-content-center">
+                <div class="align-self-center">
+                    <div class="text-center" id="">
+                        <img src="/img/logo.jpeg" id="logo" alt="">
+                    </div>
+                    <form class="">
+                        <!--Início Formulário-->
+                        <div class="form-group">
+                            <label for="usuario">Usuário: </label>
+                            <input type="text" class="form-control" id="usuario" aria-describedby="emailHelp"
+                                placeholder="Digite seu usuário">
+                            <small id="emailHelp" class="form-text text-muted">Não compartilhe seu usuário com
+                                ninguém.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha: </label>
+                            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="lembrar-usuario">
+                            <label class="form-check-label" for="lembrar-usuario">Lembrar meu usuário e senha</label>
+                        </div>
+                        <button id="btn-login" class="container-fluid btn btn-primary ">Entrar</button>
+                    </form>
+                    <!--Fim Formulário-->
+                </div>
+
             </div>
-            <form class=""><!--Início Formulário-->
-              <div class="form-group">
-                <label for="usuario">Usuário: </label>
-                <input type="text" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="Digite seu usuário">
-                <small id="emailHelp" class="form-text text-muted">Não compartilhe seu usuário com ninguém.</small>
-              </div>
-              <div class="form-group">
-                <label for="senha">Senha: </label>
-                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-              </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="lembrar-usuario">
-                <label class="form-check-label" for="lembrar-usuario">Lembrar meu usuário e senha</label>
-              </div>
-              <button type="submit" class="container-fluid btn btn-primary ">Entrar</button>
-            </form><!--Fim Formulário-->
-          </div>
-          
         </div>
-      </div><!--Fim container-->
+        <!--Fim container-->
 
-    </section><!--Fim Section formulários-->
-    
-   
- 
-  
-   
-    
-    
-    <footer class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-bottom"> <!--Início Footer-->
-      
-    </footer><!--Fim Footer-->
-  
+    </section>
+    <!--Fim Section formulários-->
+
+
+
+
+
+
+
+    <footer class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-bottom">
+        <!--Início Footer-->
+
+    </footer>
+    <!--Fim Footer-->
+
     <!--Media queries-->
-    
+
     <style type="text/css">
-            
-
-               /* Small devices (landscape phones, 576px and up) */
-
-               
-              @media (min-width: 360px) { 
-               
-                form{
-                  margin-top: 70px;
-                }
-                #logo {
-                  margin-bottom: -160px;
-                }
-              }
-
-               /* Medium devices (tablets, 768px and up) */
-              @media (min-height: 1024px){  
-               
-                form{
-                  margin-top: 150px;
-                }
-                #logo {
-                  margin-bottom: -250px;
-                }
-              }
-
-               /* Large devices (desktops, 992px and up) */
-              @media (min-width: 992px) and (max-width: 1199px) {  
-              
-               
-
-              }
-
-               /* Extra large devices (large desktops, 1200px and up) */
-              @media (min-width: 1200px) { 
-              
-              }
-      
+        /* Small devices (landscape phones, 576px and up) */
 
 
+        @media (min-width: 360px) {
+
+            form {
+                margin-top: 70px;
+            }
+
+            #logo {
+                margin-bottom: -160px;
+            }
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-height: 1024px) {
+
+            form {
+                margin-top: 150px;
+            }
+
+            #logo {
+                margin-bottom: -250px;
+            }
+        }
+
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) and (max-width: 1199px) {}
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {}
     </style>
-    
+
     <!-- JavaScript (Opcional) -->
 
-    
-      
-     
+
+
+
     </script>
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    
-    
-  </body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/common.js"></script>
+
+
+</body>
+
 </html>

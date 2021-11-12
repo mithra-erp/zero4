@@ -1,28 +1,21 @@
-*{
-    margin: 0;
-    margin: 0;
+* {
+  margin: 0;
+  margin: 0;
 }
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f6f6f6;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f6f6f6;
 }
-
 
 /* 
 ------------- Imagem  ----------------
 */
 
-
 #imagem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
- 
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-
 
 /* 
 ------------- Grid area  ----------------
@@ -32,102 +25,97 @@ body{
     background-color: green;
 } */
 
-div.col-lg-2, div.col-lg-3{
-    margin: 20px;
-    background: #ccc;
-    border-radius: 5px;
-    border: 0.2px dotted #c6c6c6;
-    box-shadow: 0px 4px 4px -2px rgba(0,0,0,.5);
-    padding: 20px;
-    
+
+div.colunas {
+  background: #ccc;
+  border-radius: 5px;
+  border: 0.2px dotted #c6c6c6;
+  box-shadow: 0px 4px 4px -2px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 #checkbox-area {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-
-h3{
-    font-size: 1em;
-    font-weight: bolder;
-    text-transform: uppercase;
-    border-bottom: 0.1px solid gray;
-    text-align: center;
-    margin-bottom: 5px;
+h3 {
+  font-size: 1em;
+  font-weight: bolder;
+  text-transform: uppercase;
+  border-bottom: 0.1px solid gray;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 label {
-    margin: 10px 0px 10px 0;
-    font-weight: bold;
-    font-size: 0.9em;
-    
+  margin: 10px 0px 10px 0;
+  font-weight: bold;
+  font-size: 0.9em;
 }
-label.custom-control-label::before{
-    background: #fff;
+label.custom-control-label::before {
+  background: #fff;
 }
 
-input.form-control{
-    margin-bottom: 20px;
+.custom-select {
+width: 100%;
+}
+
+input.form-control {
+  margin-bottom: 20px;
 }
 
 /* 
 ------------- Modal  ----------------
 */
 .modal-header h5 {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 .modal-body label {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 /* 
 ------------- Rodapé  ----------------
 */
 
 footer {
-    height: 50px;
-    margin-top: 20px;
+  height: 50px;
+  margin-top: 20px;
 }
 
 /* 
 ------------- Testes  ----------------
 */
 
-
 .div-select {
-    margin-top: 8px;
-    
+  margin-top: 8px;
 }
 .toggle {
-    display: none;
-  }
-input:checked + .toggle { 
-display: block; 
+  display: none;
 }
-
-
+input:checked + .toggle {
+  display: block;
+}
 
 input:checked + select#porta-malas.custom-select {
-    display: block;
+  display: block;
 }
 
+canvas {
+  border: 2px dotted #cccccc;
+  border-radius: 15px;
+  cursor: crosshair;
+  width: 60%;
+  height: 160px;
+}
 
-
-  #sig-canvas {
-    border: 2px dotted #CCCCCC;
-    border-radius: 15px;
-    cursor: crosshair;
-
+@media (max-width: 1024px) {
+  canvas {
+    width: 90%;
+    height: 160px;
   }
- 
-  @media (max-width: 740px){
-      canvas {
-          width: 80%;
-          height: 160px;
-      }
-  } 
-  /*
+}
+/*
 
   Pad  
 
   */
-
-  

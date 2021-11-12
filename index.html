@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- HTML5Shiv -->
     <!--[if lt IE 9]>
@@ -18,674 +21,712 @@
 
     <!-- Estilo customizado -->
     <link rel="stylesheet" type="text/css" href="./CSS/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/loader.css">
 
     <title>OS</title>
-  </head>
-  <body>
- 
- 
-    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button> -->
+</head>
 
-<!-- Modal -->
-<div class="modal fade" id="modal-prev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Informações do veículo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label  for="placa">Placa</label>
-            <input type="text" class="form-control" id="placa" placeholder="Ex: ABC1234">
-          </div>
-          <div class="form-group">
-            <label  for="cor">Cor</label>
-            <input type="text" class="form-control" id="cor" placeholder="Ex: Azul">
-          </div>
-          <div class="form-group">
-            <label  for="ano-modelo">Ano Modelo</label>
-            <input type="number" class="form-control" id="ano-modelo" placeholder="Ex: 1998">
-          </div>
-          <div class="form-group">
-            <label  for="ano-fab">Ano Fabricação</label>
-            <input type="number" class="form-control" id="ano-fab" placeholder="Ex: 1998">
-          </div>
-          <div class="form-group">
-            <label  for="chassi">Chassi</label>
-            <input type="text" class="form-control" id="chassi" placeholder="">
-          </div>
-          <div class="form-group">
-            <label  for="renavam">RENAVAM</label>
-            <input type="text" class="form-control" id="renavam" placeholder="">
-          </div>
-     
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Confirmar</button>
-      </div>
+<body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-prev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Informações do veículo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-veicle-form">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="placa">Placa</label>
+                                <input type="text" class="form-control" id="placa" placeholder="Ex: ABC1234"
+                                    data-campo="PLACA">
+                            </div>
+                            <div class="form-group col">
+                                <label for="cor">Cor</label>
+                                <input type="text" class="form-control" id="cor" placeholder="Ex: Azul"
+                                    data-campo="CORVEICULO">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="ano-modelo">Ano Modelo</label>
+                                <input type="number" class="form-control" id="ano-modelo" placeholder="Ex: 1998"
+                                    data-campo="ANOMODELO">
+                            </div>
+                            <div class="form-group col">
+                                <label for="ano-fab">Ano Fabricação</label>
+                                <input type="number" class="form-control" id="ano-fab" placeholder="Ex: 1998"
+                                    data-campo="ANOFABRICACAO">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="chassi">Chassi</label>
+                                <input type="text" class="form-control" id="chassi" placeholder="" data-campo="CHASSI">
+                            </div>
+                            <div class="form-group col">
+                                <label for="renavam">RENAVAM</label>
+                                <input type="text" class="form-control" id="renavam" placeholder=""
+                                    data-campo="RENAVAM">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="new-veicle-button">Confirmar</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-  
+
 
     <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <!--Início Navbar-->
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary"><!--Início Navbar-->
-        
-        <div class="container">
+            <div class="container">
+<!--
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Formulário <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Histórico</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Observações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#">Processo</a>
+                        </li>
+                    </ul>
+                </div>
+                -->
+            </div>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Formulário <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Histórico</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Observações</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="#">Processo</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </nav> <!--Fim Nav-bar-->
-
-     
-     
-
-
+        </nav>
+        <!--Fim Nav-bar-->
     </header>
 
-    <section><!--Início Section com a imagem do carro-->
-      <div class="" id="imagem">
-        <div class="">
-          <div class="">
-            <h1 class=""><img class="img-fluid" src="./img/checklist2.png" alt=""></h1>
-          </div>
+    <section>
+        <!--Início Section com a imagem do carro-->
+        <div class="" id="imagem">
+            <div class="">
+                <div class="">
+                    <h1 class=""><img class="img-fluid" src="./img/checklist2.png" alt=""></h1>
+                </div>
+            </div>
         </div>
-      </div>
-      
-    </section><!--Fim section com a imagem do carro-->
- 
-    <section><!--Início Section formumlário-->
-      <form action=""><!-- Início formulário-->
-        <div class="container " ><!-- In´cio Container-->
-         <div class="row" id=""> <!--Grid 4 inputs-->
-            
-              <div class="col-lg-3 colunas" data-campo="GRUPO" id="visao-topo"><!--Visão topo-->
-                
-               <div class="align-self-center">
-                <h3>Visão topo</h3>
 
-                <div>
-                  <div class="custom-control custom-checkbox" >
-                      
-                      <div>
-                        <input class="custom-control-input" checked="porta-malas" type="checkbox" name="porta-malas" id="porta-mala" >
-                        <label data-campo="ITEM" class="custom-control-label" for="porta-mala">Porta malas</label>
-                      </div>
-                   
-                  </div>
-                  
-                  <div class="div-select " id="select" >
+    </section>
+    <!--Fim section com a imagem do carro-->
 
-                    <select data-campo="VALOR" onclick="" class="custom-select" name="porta-malas" id="">
-                      <option value="Amassado">Amassado</option>
-                      <option value="Não amassado" selected>Não amassado</option>
-                    </select>
-                    
-                  </div>
-                 
-                </div>
-                
-                <div>
-                  <div class="custom-control custom-checkbox" >
-                    <div>
+    <section>
+        <input type="hidden" id="veiculo" value="" />
+        <!--Início Section formumlário-->
+        <form action="" id="vistoria-form">
+            <!-- Início formulário-->
+            <div class="container ">
+                <!-- In´cio Container-->
+                <div class="row" id="">
+                    <!--Grid 4 inputs-->
 
-                      <div>
-                        <input class="custom-control-input" type="checkbox" name="parabrisa-traseiro" id="parabrisa-traseiro" >
-                        <label data-campo="ITEM" class="custom-control-label" for="parabrisa-traseiro">Para-brisa traseiro</label>
-                      </div>
-                   
-                    </div>
-                    
-                  </div>
-                  
-                  <div class="div-select">
-                    <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                      <option value="Amassado">Amassado</option>
-                      <option value="Não amassado" selected>Não amassado</option>
-                    </select>
-                  </div>
-                </div>
-                
+                    <div class="col-md-3" data-campo="GRUPO" id="visao-topo">
+                        <!--Visão topo-->
+                        <div class="align-self-center colunas">
+                            <h3>Visão topo</h3>
 
-                <div>
-                  <div class="custom-control custom-checkbox" >
-                    <div>
-
-                      <div>
-                        <input class="custom-control-input" type="checkbox" name="teto" id="teto" >
-                        <label data-campo="ITEM" class="custom-control-label" for="teto">Teto</label>
-                      </div>
-                   
-                    </div>
-                    
-                  </div>
-                  
-                  <div class="div-select">
-                    <select data-campo="VALOR" class="custom-select" name="teto" id="teto">
-                      <option value="Amassado">Amassado</option>
-                      <option value="Não amassado" selected>Não amassado</option>
-                    </select>
-                  </div>
-                </div>
-
-               
-                <div>
-                  <div class="custom-control custom-checkbox" id="checkbox-area">
-                    <div>
-  
-                      <div>
-                        <input class="custom-control-input" type="checkbox" name="parabrisa-dianteiro" id="parabrisa-dianteiro" >
-                        <label data-campo="ITEM" class="custom-control-label" for="parabrisa-dianteiro">Para-brisa Dianteiro</label>
-                      </div>
-                     
-                    </div>
-
-                  
-                    
-                  </div>
-
-                  <div class="div-select">
-                    <select data-campo="VALOR" class="custom-select" name="parabrisa-dianteiro" id="parabrisa-dianteiro">
-                      <option value="Amassado">Amassado</option>
-                      <option value="Não amassado" selected>Não amassado</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="custom-control custom-checkbox" id="checkbox-area">
-                    <div>
-  
-                      <div>
-                        <input class="custom-control-input" type="checkbox" name="capo"  id="capo" >
-                        <label data-campo="ITEM" class="custom-control-label" for="capo">Capô</label>
-                      </div>
-  
-                      
-                    </div>
-                    
-                  </div>
-
-                  <div class="div-select">
-                    <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                      <option value="Amassado">Amassado</option>
-                      <option value="Não amassado" selected>Não amassado</option>
-                    </select>
-                  </div>
-                </div>
-             
-              
-                
-        
-               </div>
-         
-    
-              </div><!--Fim visão topo-->
-     
-              <div class="col-lg-2 colunas" data-campo="GRUPO" id="visao-traseira"><!--Visão traseira-->
-                
-                <div class="align-self-center ">
-                  <h3>Visão traseira</h3>
-               
-
-            
-
-                  <div>
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
                             <div>
-                              <input class="custom-control-input" type="checkbox" name="porta-malas2" id="porta-malas2" >
-                              <label data-campo="ITEM" class="custom-control-label" for="porta-malas2">Porta malas</label>  
+                                <div class="custom-control custom-checkbox">
+
+                                    <div>
+                                        <input class="custom-control-input" checked="porta-malas" type="checkbox"
+                                            name="porta-malas" id="porta-mala">
+                                        <label data-campo="ITEM" class="custom-control-label" for="porta-mala">Porta
+                                            malas</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TOPO" data-item="PORTA-MALAS"
+                                        onclick="" class="custom-select" name="porta-malas" id="">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+
                             </div>
-                          </div>
-                          
-                        </div>
-  
-                          <div class="div-select">
-                            <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                              <option value="Amassado">Amassado</option>
-                              <option value="Não amassado" selected>Não amassado</option>
-                            </select>
-                        </div>
-                      </div>
-                     
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
+
                             <div>
-                              <input class="custom-control-input" type="checkbox" name="lanterna-esquerda"  id="lanterna-esquerda" >
-                              <label data-campo="ITEM" class="custom-control-label" for="lanterna-esquerda">Lanterna Esquerda</label>  
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="parabrisa-traseiro">Para-brisa traseiro</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TOPO" data-item="PARA-BRISA TRASEIRO"
+                                        class="custom-select">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
                             </div>
-                          </div>
-                          
-                        </div>
-  
-                          <div class="div-select">
-                            <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                              <option value="Amassado">Amassado</option>
-                              <option value="Não amassado" selected>Não amassado</option>
-                            </select>
-                        </div>
-                      </div>
-                      
-                     <div>
-                      <div class="custom-control custom-checkbox">
-                        <div>
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="para-choque"  id="para-choque" >
-                            <label data-campo="ITEM" class="custom-control-label" for="para-choque">Para-Choque</label>  
-                          </div>
-                        </div>
-                        
-                      </div>
 
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                      </div>
-                     </div>
 
-                     <div>
-                      <div class="custom-control custom-checkbox">
-                        <div>
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="lanterna-direita"  id="lanterna-direita" >
-                            <label data-campo="ITEM" class="custom-control-label" for="lanterna-direita">Lanterna Direita</label>  
-                          </div>
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="teto" id="teto">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="teto">Teto</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TOPO" data-item="TETO"
+                                        class="custom-select" name="teto" id="teto">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                <div class="custom-control custom-checkbox" id="checkbox-area">
+                                    <div>
+
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="parabrisa-dianteiro">Para-brisa Dianteiro</label>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TOPO" data-item="PARA-BRISA DIANTEIRO"
+                                        class="custom-select">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox" id="checkbox-area">
+                                    <div>
+
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="capo" id="capo">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="capo">Capô</label>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TOPO" data-item="CAPO"
+                                        class="custom-select">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
                         </div>
-                        
-                      </div>
+                    </div>
+                    <!--Fim visão topo-->
 
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                      </div>
-                     </div>
-                      
+                    <div class="col-md-3" data-campo="GRUPO" id="visao-traseira">
+                        <!--Visão traseira-->
+
+                        <div class="align-self-center colunas">
+                            <h3>Visão traseira</h3>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <input class="custom-control-input" type="checkbox" name="porta-malas2"
+                                            id="porta-malas2">
+                                        <label data-campo="ITEM" class="custom-control-label" for="porta-malas2">Porta
+                                            malas</label>
+                                    </div>
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TRASEIRA" data-item="PORTA MALAS"
+                                        class="custom-select" name="select" id="">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="lanterna-esquerda"
+                                                id="lanterna-esquerda">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="lanterna-esquerda">Lanterna Esquerda</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TRASEIRA" data-item="LANTERNA ESQUERDA"
+                                        class="custom-select">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="para-choque"
+                                                id="para-choque">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="para-choque">Para-Choque</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TRASEIRA" data-item="PARA-CHOQUE"
+                                        class="custom-select">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="lanterna-direita"
+                                                id="lanterna-direita">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="lanterna-direita">Lanterna Direita</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO TRASEIRA" data-item="LANTERNA DIREITA"
+                                        class="custom-select">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
-                    
-                
-                
-                  
+                    <!--Fim traseira-->
+
+                    <div class="col-md-3" data-campo="GRUPO" id="visao-dianteira">
+                        <!--Visão dianteira-->
+
+                        <div class="align-self-center colunas">
+                            <h3>Visão Dianteira</h3>
+
+                            <div>
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="retro-direito"
+                                                id="retro-direito">
+                                            <label data-campo="ITEM" class="custom-control-label"
+                                                for="retro-direito">Retrovisor Direito</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="VISAO DIANTEIRA"
+                                            data-item="RETROVISOR DIREITO" class="custom-select" name="retro-direito"
+                                            id="retro-direito">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <input class="custom-control-input" type="checkbox" name="farol-direito"
+                                            id="farol-direito">
+                                        <label data-campo="ITEM" class="custom-control-label" for="farol-direito">Farol
+                                            Direito</label>
+                                    </div>
+                                </div>
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO DIANTEIRA" data-item="FAROL DIREITO"
+                                        class="custom-select" name="farol-direito" id="farol-direito">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <input class="custom-control-input" type="checkbox" name="retro-esquerdo"
+                                            id="retro-esquerdo">
+                                        <label data-campo="ITEM" class="custom-control-label"
+                                            for="retro-esquerdo">Retrovisor Esquerdo</label>
+                                    </div>
+                                </div>
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO DIANTEIRA"
+                                        data-item="RETROVISOR ESQUERDO" class="custom-select" name="retro-esquerdo"
+                                        id="retro-esquerdo">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <input class="custom-control-input" type="checkbox" name="farol-esquerdo"
+                                            id="farol-esquerdo">
+                                        <label data-campo="ITEM" class="custom-control-label" for="farol-esquerdo">Farol
+                                            Esquerdo</label>
+                                    </div>
+                                </div>
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO DIANTEIRA" data-item="FAROL ESQUERDO"
+                                        class="custom-select" name="farol-esquerdo" id="farol-esquerdo">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <div class="custom-control custom-checkbox">
+                                    <div>
+                                        <input class="custom-control-input" type="checkbox" name="para-dianteiro"
+                                            id="para-dianteiro">
+                                        <label data-campo="ITEM" class="custom-control-label"
+                                            for="para-dianteiro">Para-Choque</label>
+                                    </div>
+                                </div>
+                                <div class="div-select">
+                                    <select data-campo="VALOR" data-grupo="VISAO DIANTEIRA" data-item="PARA-CHOQUE"
+                                        class="custom-select" name="para-dianteiro" id="para-dianteiro">
+                                        <option value="Amassado">Amassado</option>
+                                        <option value="Não amassado" selected>Não amassado</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--Fim visão dianteira-->
+
+                    <div class="col-md-3" data-campo="GRUPO" id="lado-direito">
+                        <!--Visão lado direito-->
+
+                        <div class="align-self-center colunas ">
+                            <h3>Visão Lado Direito</h3>
+
+                            <div>
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="janela-c"
+                                                id="janela-c">
+                                            <label class="custom-control-label" for="janela-c">Janela Coluna C</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO" data-item="JANELA COLUNA C"
+                                            class="custom-select">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="paralama-traseiro"
+                                                id="paralama-traseiro" />
+                                            <label class="custom-control-label" for="paralama-traseiro">Para-Lama
+                                                Traseiro</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO"
+                                            data-item="PARABRISA TRASEIRO" class="custom-select">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="rd-traseira"
+                                                id="rd-traseira">
+                                            <label class="custom-control-label" for="rd-traseira">Roda Traseira</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO" data-item="RODA TRASEIRA"
+                                            class="custom-select">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="porta-traseira"
+                                                id="porta-traseira">
+                                            <label data-campo="ITEM" class=" custom-control-label"
+                                                for="porta-traseira">Porta traseira</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO" data-item="PORTA TRASEIRA"
+                                            class="custom-select" name="porta-traseira" id="porta-traseira">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="porta-dianteira"
+                                                id="porta-dianteira">
+                                            <label class=" custom-control-label" for="porta-dianteira">Porta
+                                                Dianteira</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO" data-item="PORTA DIANTEIRA"
+                                            class="custom-select" name="porta-dianteira" id="porta-dianteira">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox" name="rd-dianteira"
+                                                id="rd-dianteira">
+                                            <label class="custom-control-label" for="rd-dianteira">Roda
+                                                Dianteira</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO" data-item="RODA DIANTEIRA"
+                                            class="custom-select" name="rd-dianteira" id="rd-dianteira">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <div>
+                                            <input class="custom-control-input" type="checkbox"
+                                                name="paralama-dianteiro" id="paralama-dianteiro">
+                                            <label class="custom-control-label" for="paralama-dianteiro">Para-Lama
+                                                Dianteiro</label>
+                                        </div>
+                                    </div>
+                                    <div class="div-select">
+                                        <select data-campo="VALOR" data-grupo="LADO DIREITO"
+                                            data-item="PARA-LAMA DIANTEIRO" class="custom-select"
+                                            name="paralama-dianteiro" id="paralama-dianteiro">
+                                            <option value="Amassado">Amassado</option>
+                                            <option value="Não amassado" selected>Não amassado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Fim visão lado direito-->
+
+
+                </div><!-- Fim Grid 4 inputs-->
+
+                <div class="row d-flex justify-content-center">
+                    <canvas></canvas>
                 </div>
-    
-              </div><!--Fim traseira-->
-     
-              <div class="col-lg-2 colunas" data-campo="GRUPO" id="visao-dianteira"><!--Visão dianteira-->
-                
-                <div class="align-self-center ">
-                  <h3>Visão Dianteira</h3>
-               
-
-            
-
-                    <div>
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="retro-direito" id="retro-direito" >
-                            <label data-campo="ITEM" class="custom-control-label" for="retro-direito">Retrovisor Direito</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="retro-direito" id="retro-direito">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-
-                      </div>
-
-                    </div>
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="farol-direito"  id="farol-direito" >
-                            <label data-campo="ITEM" class="custom-control-label" for="farol-direito">Farol Direito</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="farol-direito" id="farol-direito">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-
-                      </div>
-
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="retro-esquerdo"  id="retro-esquerdo" >
-                            <label data-campo="ITEM" class="custom-control-label" for="retro-esquerdo">Retrovisor Esquerdo</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="retro-esquerdo" id="retro-esquerdo">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-
-                      </div>
-
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="farol-esquerdo"  id="farol-esquerdo" >
-                            <label data-campo="ITEM" class="custom-control-label" for="farol-esquerdo">Farol Esquerdo</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="farol-esquerdo" id="farol-esquerdo">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-
-                      </div>
-
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="para-dianteiro"  id="para-dianteiro" >
-                            <label data-campo="ITEM" class="custom-control-label" for="para-dianteiro">Para-Choque</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="para-dianteiro" id="para-dianteiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-
-                      </div>
-
-                  </div>
-                      
-                    
-
-            
-                
-                  
-    
-              </div><!--Fim visão dianteira-->
-     
-              <div class="col-lg-3 colunas" data-campo="GRUPO" id="lado-direito"><!--Visão lado direito-->
-               
-                <div class="align-self-center ">
-                  <h3>Visão Lado Direito</h3>
-                  
-                    <div>
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="janela-c" id="janela-c" >
-                            <label data-campo="ITEM" class="custom-control-label" for="janela-c">Janela Coluna C</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-                      </div>
-                  
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="paralama-traseiro"  id="paralama-traseiro" >
-                            <label data-campo="ITEM" class="custom-control-label" for="paralama-traseiro">Para-Lama Traseiro</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-                      </div>
-                  
-
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="rd-traseira"  id="rd-traseira" >
-                            <label data-campo="ITEM" class="custom-control-label" for="rd-traseira">Roda Traseira</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="parabrisa-traseiro" id="parabrisa-traseiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-                      </div>
-                     
-                      <div> 
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="porta-traseira"  id="porta-traseira" >
-                            <label data-campo="ITEM" class= " custom-control-label"for="porta-traseira">Porta traseira</label>
-                          </div>
-                          
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="porta-traseira" id="porta-traseira">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-                      
-                      </div>
-                      
-                      <div>
-                        <div class="custom-control custom-checkbox">
-    
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="porta-dianteira"  id="porta-dianteira" >
-                            <label data-campo="ITEM" class= " custom-control-label"for="porta-dianteira">Porta Dianteira</label>
-                          </div>
-                        </div>  
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="porta-dianteira" id="porta-dianteira">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-                      </div>
-    
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="rd-dianteira" id="rd-dianteira" >
-                            <label data-campo="ITEM" class="custom-control-label" for="rd-dianteira">Roda Dianteira</label>
-                          </div>
-                        </div>
-                          <div class="div-select">
-                            <select data-campo="VALOR" class="custom-select" name="rd-dianteira" id="rd-dianteira">
-                              <option value="Amassado">Amassado</option>
-                              <option value="Não amassado" selected>Não amassado</option>
-                            </select>
-                          </div>
-                      </div>
-
-                      <div>
-                        <div class="custom-control custom-checkbox">
-                          <div>
-                            <input class="custom-control-input" type="checkbox" name="paralama-dianteiro"  id="paralama-dianteiro" >
-                            <label data-campo="ITEM" class="custom-control-label" for="paralama-dianteiro">Para-Lama Dianteiro</label>
-                          </div>
-                        </div>
-                        <div class="div-select">
-                          <select data-campo="VALOR" class="custom-select" name="paralama-dianteiro" id="paralama-dianteiro">
-                            <option value="Amassado">Amassado</option>
-                            <option value="Não amassado" selected>Não amassado</option>
-                          </select>
-                        </div>
-                      </div>
-                        
-                    
-                    </div>
-
-                      
-                    
-                
-                  
+                <div class="row d-flex justify-content-center m-2">
+                    <button class="btn btn-danger m-2" id="clear-button">Limpar</button>
+                    <button class="btn btn-success m-2" id="submit-button">Enviar Formulário</button>
                 </div>
-              </div><!--Fim visão lado direito-->
-           
-     
-            
-    
-          </div><!-- Fim Grid 4 inputs-->
-          
-        </div>
-        <div class="col-lg-12 d-flex justify-content-center">
-          <canvas id="sig-canvas" width="720
-          " height="160">
-            Get a better browser, bro.
-          </canvas>
-        </div>
-       </form><!--Fim formulário-->
-    </section><!--Início Section formumlário-->
-    
-    
-    
-    <footer class="navbar navbar-expand-lg navbar-dark bg-secondary"> <!--Início Footer-->
-      
-    </footer><!--Fim Footer-->
-  
+            </div>
+        </form>
+        <!--Fim formulário-->
+    </section>
+    <!--Início Section formumlário-->
+
+
+
+    <footer class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <!--Início Footer-->
+    </footer>
+    <!--Fim Footer-->
+
     <!--Media queries-->
-    
+
     <style type="text/css">
-            
-
-               /* Small devices (landscape phones, 576px and up) */
-              @media (min-width: 576px) { 
-                h3{
-                  font-size: 1.2em;
-                }
-                
-              }
-
-               /* Medium devices (tablets, 768px and up) */
-              @media (min-width: 768px) {  
-                
-              }
-
-               /* Large devices (desktops, 992px and up) */
-              @media (min-width: 992px) and (max-width: 1199px) {  
-                label{
-                  font-size: 0.6em;
-                  font-weight: bold;
-                  width: fit-content;
-                }
-                h3{
-                  font-size: 0.8em;
-                }
-                #visao-traseira select, #visao-dianteira select, #visao-topo select, #lado-direito select{
-                  font-size: 0.8em;
-                }
-                #visao-traseira select, #visao-dianteira select{
-                  width: fit-content;
-                }
-               
-
-              }
-
-               /* Extra large devices (large desktops, 1200px and up) */
-              @media (min-width: 1200px) { 
-                label{
-                  font-size: 0.9em;
-                }
-                h3{
-                  font-size: 1em;
-                }
-                #visao-traseira select, #visao-dianteira select{
-                  width: fit-content;
-                }
-               }
-      
-
-
-    </style>
-    <div class="container">
-      <script src="js/signature.js"></script>
-    </div>
-
-    <!-- JavaScript (Opcional) -->
-
-  
-    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    
-    <script type="text/javascript">
-
-      var placa = document.getElementById("#placa")
-     
-      if (placa == null){
-        $('#modal-prev').modal('show');
-      }
-
-      
-
-          
-
-         
-          document.querySelector('#porta-mala').addEventListener('change', function(){
-
-            if(this.checked){ 
-            document.querySelector('#porta-malas').disabled = false; 
-            } else { 
-            document.querySelector('#porta-malas').disabled = true; 
+        /* Small devices (landscape phones, 576px and up) */
+        @media (min-width: 576px) {
+            h3 {
+                font-size: 1.2em;
             }
 
-          
-          }) 
-        
-      
-     
+        }
+
+        /* Medium devices (tablets, 768px and up) */
+        @media (min-width: 768px) {}
+
+        /* Large devices (desktops, 992px and up) */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            label {
+                font-size: 0.6em;
+                font-weight: bold;
+                width: fit-content;
+            }
+
+            h3 {
+                font-size: 0.8em;
+            }
+
+            #visao-traseira select,
+            #visao-dianteira select,
+            #visao-topo select,
+            #lado-direito select {
+                font-size: 0.8em;
+            }
+
+            #visao-traseira select,
+            #visao-dianteira select {
+                width: fit-content;
+            }
+
+
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media (min-width: 1200px) {
+            label {
+                font-size: 0.9em;
+            }
+
+            h3 {
+                font-size: 1em;
+            }
+
+            #visao-traseira select,
+            #visao-dianteira select {
+                width: fit-content;
+            }
+        }
+    </style>
+    <!-- JavaScript (Opcional) -->
+
+
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="js/integracao.js"></script>
+
+    <script type="text/javascript">
+
+        var placa = document.getElementById("#placa")
+
+        if (placa == null) {
+            $('#modal-prev').modal('show');
+        }
     </script>
-  </body>
+</body>
+
 </html>
