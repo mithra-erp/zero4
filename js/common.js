@@ -41,26 +41,30 @@ function login() {
             request.setRequestHeader("Content-Type", "application/json");
         },
         url: "https://api.mithra.com.br/mithra/v1/auth",
-        //xhrFields: {
-        //    withCredentials: true
-        //},
+        xhrFields: {
+            withCredentials: true
+        },
         data: JSON.stringify(login),
         processData: false,
         success: function (msg) {
+            HideOverlay();
             console.log(msg);
             SetCookie('expiration_session', msg.expires_in);
             window.location.href = 'index.html';
         },
-        error: function (msg) {
-            console.log(msg.message);
-        },
-        always: function (msg) {
+        error: function (xhr, ajaxOptions, thrownError) {
             HideOverlay();
+            var json = xhr.responseJSON;
+            if (json !== undefined) {
+                alert(json.message);
+            } else {
+                alert(thrownError);
+            }
         }
     });
 }
 
-$(document).on("click", "#btn-login", function(e) {
+$(document).on("click", "#btn-login", function (e) {
     e.preventDefault();
     login();
 });

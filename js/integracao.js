@@ -46,9 +46,9 @@ function insertNewRecord(area, records, success, error) {
             request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
         },
         url: "https://api.mithra.com.br/mithra/v1/template",
-        //xhrFields: {
-        //    withCredentials: true
-        //},
+        xhrFields: {
+            withCredentials: true
+        },
         data: json,
         processData: false,
         success: function (msg) {
@@ -206,9 +206,9 @@ $(document).on('click', "#new-veicle-button", function (e) {
             request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
         },
         url: "https://api.mithra.com.br/mithra/v1/search",
-        //xhrFields: {
-        //    withCredentials: true
-        //},
+        xhrFields: {
+            withCredentials: true
+        },
         data: JSON.stringify(search),
         processData: false,
         success: function (msg) {
