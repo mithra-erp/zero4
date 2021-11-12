@@ -114,7 +114,7 @@ function saveForm() {
             hash["CHAVE"] = _id;
             hash["GRUPO"] = $(value).data("grupo");
             hash["ITEM"] = $(value).data("item");
-            hash[$(value).data("campo")] = $(value).val();
+            hash["VALOR"] = $(value).val();
 
             data.push(hash);
         });

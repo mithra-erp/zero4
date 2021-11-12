@@ -11,7 +11,7 @@ function DeleteAllCookies() {
 }
 
 function doesHttpOnlyCookieExist(name) {
-    $.cookie(name, 'something', { path:  "/;SameSite=None", secure: true });
+    $.cookie(name, 'something', { path: "/;SameSite=None", secure: true });
     console.log(name + "=" + $.cookie(name));
     console.log($.cookie(name) == undefined);
     return $.cookie(name) == undefined;
