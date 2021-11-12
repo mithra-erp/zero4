@@ -41,9 +41,9 @@ function login() {
             request.setRequestHeader("Content-Type", "application/json");
         },
         url: "https://api.mithra.com.br/mithra/v1/auth",
-        xhrFields: {
-            withCredentials: true
-        },
+        //xhrFields: {
+        //    withCredentials: true
+        //},
         data: JSON.stringify(login),
         processData: false,
         success: function (msg) {
