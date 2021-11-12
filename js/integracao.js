@@ -10,8 +10,13 @@ function inputToHash(obj) {
     return hash;
 }
 
-function checkIfCookieIsExpired() {
+function checkIfSessionIsExpired() {
     var timeStamp = $.cookie('expiration_session');
+
+    if (timeStamp == undefined) {
+        window.location.href = 'login.html';
+        return;
+    }
 
     var date = new Date(timeStamp * 1000);
     var today = new Date();
@@ -22,7 +27,7 @@ function checkIfCookieIsExpired() {
         window.location.href = 'login.html';
         return;
     }
-    setTimeout(checkIfCookieIsExpired, 1000);
+    setTimeout(checkIfSessionIsExpired, 1000);
 }
 
 function lpad(value, length) {
@@ -131,16 +136,9 @@ function saveForm() {
 }
 
 $(document).ready(function () {
-    console.log(doesHttpOnlyCookieExist('token'));
-    if (!doesHttpOnlyCookieExist('token')) {
-        alert('token não existe');
-        window.location.href = 'login.html';
-        return;
-    }
+    checkIfSessionIsExpired();
 
     signaturePad = new SignaturePad(canvas, {
-        // It's Necessary to use an opaque color when saving image as JPEG;
-        // this option can be omitted if only saving as PNG or SVG
         backgroundColor: 'rgb(255, 255, 255)'
     });
 
@@ -148,8 +146,6 @@ $(document).ready(function () {
     // rather than window resize events.
     window.onresize = resizeCanvas;
     resizeCanvas();
-
-    checkIfCookieIsExpired();
 });
 
 // Adjust canvas coordinate space taking into account pixel ratio,

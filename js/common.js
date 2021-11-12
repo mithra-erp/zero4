@@ -11,8 +11,9 @@ function DeleteAllCookies() {
 }
 
 function doesHttpOnlyCookieExist(name) {
-    $.cookie(name, 'something', { path: '/' });
+    $.cookie(name, 'something', { path:  "/;SameSite=None", secure: true });
     console.log(name + "=" + $.cookie(name));
+    console.log($.cookie(name) == undefined);
     return $.cookie(name) == undefined;
 }
 
@@ -48,7 +49,6 @@ function login() {
         processData: false,
         success: function (msg) {
             HideOverlay();
-            console.log(msg);
             SetCookie('expiration_session', msg.expires_in);
             window.location.href = 'index.html';
         },
