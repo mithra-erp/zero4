@@ -40,7 +40,7 @@ function login() {
             request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
             request.setRequestHeader("Content-Type", "application/json");
         },
-        url: "http://192.168.1.100:8080/MithraAPI/mithra/v1/auth",
+        url: "https://api.mithra.com.br/mithra/v1/auth",
         xhrFields: {
             withCredentials: true
         },

@@ -45,7 +45,7 @@ function insertNewRecord(area, records, success, error) {
         beforeSend: function (request) {
             request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
         },
-        url: "http://192.168.1.100:8080/MithraAPI/mithra/v1/template",
+        url: "https://api.mithra.com.br/mithra/v1/template",
         xhrFields: {
             withCredentials: true
         },
@@ -205,7 +205,7 @@ $(document).on('click', "#new-veicle-button", function (e) {
         beforeSend: function (request) {
             request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
         },
-        url: "http://192.168.1.100:8080/MithraAPI/mithra/v1/search",
+        url: "https://api.mithra.com.br/mithra/v1/search",
         xhrFields: {
             withCredentials: true
         },
