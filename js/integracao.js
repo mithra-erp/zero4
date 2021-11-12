@@ -87,7 +87,7 @@ function insertNewVeicle(code) {
 
     insertNewRecord("PRODUT", [data], (msg) => {
         $("#veiculo").val(code);
-        $("#modal-prev").modal("hide");
+        saveForm();
     }, (error) => {
 
     });
@@ -178,11 +178,6 @@ $(document).on('click', '#clear-button', function (e) {
 
 $(document).on('click', '#submit-button', function (e) {
     e.preventDefault();
-    saveForm();
-});
-
-$(document).on('click', "#new-veicle-button", function (e) {
-    e.preventDefault();
 
     var search = {
         area: "PRODUT",
@@ -224,4 +219,19 @@ $(document).on('click', "#new-veicle-button", function (e) {
             alert(msg.responseText);
         }
     });
+});
+
+$(document).on('click', "#new-veicle-button", function (e) {
+    e.preventDefault();
+
+    var $form = $("#new-veicle-form :input");
+    var data = inputToHash($form);
+    for (var [key, value] of Object.entries(data)) {
+        if (value === '') {
+            alert(`Campo ${key} não pode ser vazio`);
+            return;
+        }
+    }
+    
+    $("#modal-prev").modal("hide");
 });
