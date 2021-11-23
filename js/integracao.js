@@ -45,20 +45,17 @@ function lpad(value, length) {
 }
 
 function insertNewRecord(area, records, success, error) {
-    var json = [];
-    json[0] = {
+    
+    let json = [{
         area: area,
         data: records
-    };
-
-    json = JSON.stringify(json);
-    console.log(json);
+    }];
 
     ShowOverlay();
 
     auth.fetch("https://api.mithra.com.br/mithra/v1/template", {
         method: "POST",
-        body: json
+        body: JSON.stringify(json)
     }).then(async (res) => {
         HideOverlay();
         console.log(res);
@@ -70,11 +67,11 @@ function insertNewRecord(area, records, success, error) {
             localStorage.removeItem("token");
         } else {
             const json_1 = await res.json();
-            error(json_1);
+            alert(json_1.message);
+            throw new Error(json_1);
         }
     }).then(responseText => console.log(responseText))
-        .catch(
-            error(console.error));
+        .catch(console.error);
 }
 
 function insertNewVeicle(code) {
@@ -117,6 +114,7 @@ function saveForm() {
         $($form).each(function (item, value) {
             var hash = {};
             hash["CHAVE"] = _id;
+            hash["ORDEM"] = item;
             hash["GRUPO"] = $(value).data("grupo");
             hash["ITEM"] = $(value).data("item");
             hash["VALOR"] = $(value).val();
@@ -129,14 +127,26 @@ function saveForm() {
         data["SIGNATURE"] = jpegUrl;
 
         insertNewRecord("ITEVEI", data, (msg) => {
-            var data = msg.responseJSON;
-            alert(data.message);
-            location.reload();
+            //var data = msg.responseJSON;
+            
+            $.confirm({
+                icon: 'fa fa-warning',
+                title: 'Confirmação!',
+                content: 'Cadastrado com sucesso!',
+                type: 'green',
+                buttons: {
+                    confirm: {
+                        text: 'OK',
+                        btnClass: 'btn-green',
+                        action: function () {
+                            location.reload();
+                        }
+                    },
+                }
+            });
         }, (error) => {
-
         });
     }, (error) => {
-
     });
 }
 
