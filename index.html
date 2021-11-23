@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -22,6 +21,7 @@
     <!-- Estilo customizado -->
     <link rel="stylesheet" type="text/css" href="./CSS/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="./CSS/loader.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/jquery-confirm.min.css" />
 
     <title>OS</title>
 </head>
@@ -29,18 +29,32 @@
 <body>
 
     <!-- Modal -->
-    <div class="modal fade" id="modal-prev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modal-prev" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Informações do veículo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <form id="new-veicle-form">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="search-costumer">CLIENTE</label>
+                                <div class="input-group mb-3">
+                                    <input class="form-control py-2" type="search" id="search-costumer">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" id="btn-search-costumer"
+                                            type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label for="cliente">NOME CLIENTE</label>
+                                <input type="text" class="form-control" id="costumer-name" placeholder="Nome Cliente"
+                                    disabled>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="form-group col">
                                 <label for="placa">Placa</label>
@@ -80,7 +94,6 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary" id="new-veicle-button">Confirmar</button>
                 </div>
             </div>
@@ -88,13 +101,66 @@
     </div>
 
 
+    <!-- Modal Cliente -->
+    <div class="modal fade" id="cliente-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastrar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-client-form">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="cgc">CPF/CNPJ</label>
+                                <input type="text" class="form-control" id="cgc" data-campo="CGC">
+                            </div>
+                            <div class="form-group col">
+                                <label for="nome">NOME CLIENTE</label>
+                                <input type="text" class="form-control" id="nome" data-campo="NOME">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="endereco">Endereço</label>
+                                <input type="text" class="form-control" id="endereco" placeholder=""
+                                    data-campo="ENDERECO">
+                            </div>
+                            <div class="form-group col">
+                                <label for="numero">Numero</label>
+                                <input type="text" class="form-control" id="numero" data-campo="NUMERO">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="municipio">Municipio</label>
+                                <input type="text" class="form-control" id="municipio" data-campo="MUNICIPIO">
+                            </div>
+                            <div class="form-group col">
+                                <label for="telefo">Telefone</label>
+                                <input type="tel" class="form-control" id="telefo" data-campo="TELEFO">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="new-client-button">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <!--Início Navbar-->
 
             <div class="container">
-<!--
+                <!--
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -137,6 +203,7 @@
 
     <section>
         <input type="hidden" id="veiculo" value="" />
+        <input type="hidden" id="cliente" value="" />
         <!--Início Section formumlário-->
         <form action="" id="vistoria-form">
             <!-- Início formulário-->
@@ -404,8 +471,8 @@
                                 <div class="custom-control custom-checkbox">
                                     <div>
                                         <input class="custom-control-input" type="checkbox" name="farol-direito"
-                                            id="farol-direito">
-                                        <label data-campo="ITEM" class="custom-control-label" for="farol-direito">Farol
+                                            id="chk-farol-direito">
+                                        <label data-campo="ITEM" class="custom-control-label" for="chk-farol-direito">Farol
                                             Direito</label>
                                     </div>
                                 </div>
@@ -637,7 +704,10 @@
     </section>
     <!--Início Section formumlário-->
 
-
+    <div class="text-center">
+        <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
+            Modal Login Form</a>
+    </div>
 
     <footer class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <!--Início Footer-->
@@ -705,28 +775,16 @@
 
 
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
+    <script src="js/jquery-confirm.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/common.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
     <script src="js/integracao.js"></script>
 
-    <script type="text/javascript">
-
-        var placa = document.getElementById("#placa")
-
-        if (placa == null) {
-            $('#modal-prev').modal('show');
-        }
-    </script>
 </body>
 
 </html>

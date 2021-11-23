@@ -1,3 +1,31 @@
+class authModule {
+    constructor() {
+        const fetch = window.fetch; // thanks to @coffeetocode who found a bypass! 
+
+        // we have to protect the original `fetch` from getting overwritten via XSS
+        // https://twitter.com/coffeetocode/status/1312998927881314305
+        const authOrigins = ["https://api.mithra.com.br", "http://localhost:8080"];
+        let token = '';
+
+        this.setToken = (value) => {
+            token = value;
+        };
+
+        this.fetch = (resource, options) => {
+            let req = new Request(resource, options);
+            console.log(new URL(req.url).origin);
+            let destOrigin = new URL(req.url).origin;
+            if (token && authOrigins.includes(destOrigin)) {
+                req.headers.set('Authorization', 'Bearer ' + token);
+                req.headers.set("X-Client-Id", btoa("08580858000184"));
+            }
+            return fetch(req);
+        };
+    }
+}
+
+const auth = new authModule();
+
 function SetCookie(name, value) {
     $.cookie(name, value, { path: '/' });
 }
@@ -30,8 +58,8 @@ function HideOverlay() {
 
 function login() {
     var login = {
-        username: $("#usuario").val(),
-        password: $("#senha").val()
+        username: $("#username").val(),
+        password: $("#password").val()
     }
 
     ShowOverlay();
@@ -49,8 +77,16 @@ function login() {
         processData: false,
         success: function (msg) {
             HideOverlay();
-            SetCookie('expiration_session', msg.expires_in);
+            console.log(msg);
+            SetCookie('session_expires_in', msg.expires_in);
+            //auth.setToken(msg.access_token);
+            sessionStorage.setItem("token", msg.access_token);
+            //$.ajaxSetup({
+            //headers: { 'Authorization': msg.token_type + ' ' + msg.access_token }
+            //});
             window.location.href = 'index.html';
+            //$("#modalLoginForm").modal("hide");
+            //$("#modal-prev").modal("show");
         },
         error: function (xhr, ajaxOptions, thrownError) {
             HideOverlay();

@@ -5,26 +5,39 @@ var canvas = document.querySelector("canvas");
 function inputToHash(obj) {
     var hash = {};
     $(obj).each(function (item, value) {
-        hash[$(value).data("campo")] = $(value).val();
+        if ($(value).data("campo") !== undefined) {
+            hash[$(value).data("campo")] = $(value).val();
+        }
     });
     return hash;
 }
 
 function checkIfSessionIsExpired() {
-    var timeStamp = $.cookie('expiration_session');
+    var timeStamp = $.cookie('session_expires_in');
 
     if (timeStamp == undefined) {
-        window.location.href = 'login.html';
-        return;
+        return false;
     }
 
     var date = new Date(timeStamp * 1000);
+
+    if (isNaN(date.getTime())) {
+        $.removeCookie('session_expires_in', { path: '/' });
+        sessionStorage.removeItem("token");
+        alert('Sua sessão expirou!');
+        document.location.href = 'login.html';
+        return;
+    }
     var today = new Date();
 
+    console.log(date.getTime());
+    console.log(today.getTime());
+
     if (date.getTime() < today.getTime()) {
+        $.removeCookie('session_expires_in', { path: '/' });
+        sessionStorage.removeItem("token");
         alert('Sua sessão expirou!');
-        $.removeCookie('expiration_session', { path: '/' });
-        window.location.href = 'login.html';
+        document.location.href = 'login.html';
         return;
     }
     setTimeout(checkIfSessionIsExpired, 1000);
@@ -45,30 +58,25 @@ function insertNewRecord(area, records, success, error) {
     console.log(json);
 
     ShowOverlay();
-    $.ajax({
-        type: "POST",
-        beforeSend: function (request) {
-            request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
-        },
-        url: "https://api.mithra.com.br/mithra/v1/template",
-        xhrFields: {
-            withCredentials: true
-        },
-        data: json,
-        processData: false,
-        success: function (msg) {
-            HideOverlay();
-            console.log(msg);
-            success(msg);
-        },
-        error: function (msg) {
-            HideOverlay();
-            console.log(msg);
-            error(msg);
-            var json = msg.responseJSON;
-            alert(json.message);
+
+    auth.fetch("https://api.mithra.com.br/mithra/v1/template", {
+        method: "POST",
+        body: json
+    }).then(async (res) => {
+        HideOverlay();
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then(function (json) {
+                success(json);
+            });
+        } else {
+            const json_1 = await res.json();
+            alert(json_1.message);
+            throw new Error(json_1);
         }
-    });
+    }).then(responseText => console.log(responseText))
+        .catch(
+            error(console.error));
 }
 
 function insertNewVeicle(code) {
@@ -96,11 +104,10 @@ function insertNewVeicle(code) {
 function saveForm() {
     var convei = {
         VEICULO: $("#veiculo").val(),
+        CLIENTENT: $("#cliente").val(),
         FILIAL: "0101"
     };
-    //console.log("Veiculo: " + $("#veiculo").val());
-    //convei["VEICULO"] = $("#veiculo").val();
-    //convei["FILIAL"] = "0101";
+
     console.log(convei);
 
     insertNewRecord("CONVEI", [convei], (json) => {
@@ -119,8 +126,6 @@ function saveForm() {
             data.push(hash);
         });
 
-        //var ctx = canvas.getContext("2d");
-
         var jpegUrl = canvas.toDataURL("image/jpeg");
 
         data["SIGNATURE"] = jpegUrl;
@@ -136,8 +141,18 @@ function saveForm() {
 }
 
 $(document).ready(function () {
-    checkIfSessionIsExpired();
+    var timeStamp = $.cookie('session_expires_in');
+    if (timeStamp == undefined) {
+        //$("#modalLoginForm").modal('show');
+        document.location.href = 'login.html';
+    } else {
+        auth.setToken(sessionStorage.getItem("token"));
+        $("#modal-prev").modal("show");
+    }
+});
 
+function prepareForm() {
+    checkIfSessionIsExpired();
     signaturePad = new SignaturePad(canvas, {
         backgroundColor: 'rgb(255, 255, 255)'
     });
@@ -146,8 +161,7 @@ $(document).ready(function () {
     // rather than window resize events.
     window.onresize = resizeCanvas;
     resizeCanvas();
-});
-
+}
 // Adjust canvas coordinate space taking into account pixel ratio,
 // to make it look crisp on mobile devices.
 // This also causes canvas to be cleared.
@@ -170,16 +184,81 @@ function resizeCanvas() {
     signaturePad.clear();
 }
 
+function cadastrarCliente(cgc) {
+    $.confirm({
+        icon: 'fa fa-warning',
+        title: 'Confirmação!',
+        content: 'Cliente não localizado, cadastrar?',
+        type: 'green',
+        buttons: {
+            confirm: {
+                text: 'Cadastrar',
+                btnClass: 'btn-green',
+                action: function () {
+                    $("#cliente-modal").modal('show');
+                }
+            },
+            somethingElse: {
+                text: 'Cancelar',
+                action: function () {
+
+                }
+            }
+        }
+    });
+}
+
 $(document).on('click', '#clear-button', function (e) {
     e.preventDefault();
     signaturePad.clear();
 });
 
+$(document).on('click', '#btn-search-costumer', function (e) {
+    e.preventDefault();
+
+    let search = {
+        area: "CLIENT",
+        search: [{
+            field: "CGC",
+            operation: "EQUAL_TO",
+            value: $('#search-costumer').val()
+        }],
+        order: "CODIGO DESC",
+        limit: 1
+    };
+
+    ShowOverlay();
+
+    auth.fetch("https://api.mithra.com.br/mithra/v1/search", {
+        method: "POST",
+        body: JSON.stringify(search)
+    }).then(async (res) => {
+        HideOverlay();
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then(function (json) {
+                console.log(json);
+                if (json.success) {
+                    console.log(json.data[0].NOME);
+                    $("#costumer-name").val(json.data[0].NOME);
+                } else {
+                    cadastrarCliente();
+                }
+            });
+        } else {
+            const json_1 = await res.json();
+            alert(json_1.message);
+            throw new Error(json_1);
+        }
+    }).then(responseText => console.log(responseText))
+        .catch(console.error);
+})
+
 
 $(document).on('click', '#submit-button', function (e) {
     e.preventDefault();
 
-    var search = {
+    let search = {
         area: "PRODUT",
         search: [{
             field: "GRUPO",
@@ -191,34 +270,32 @@ $(document).on('click', '#submit-button', function (e) {
     };
 
     ShowOverlay();
-    $.ajax({
-        type: "POST",
-        beforeSend: function (request) {
-            request.setRequestHeader("X-Client-Id", btoa("08580858000184"));
-        },
-        url: "https://api.mithra.com.br/mithra/v1/search",
-        xhrFields: {
-            withCredentials: true
-        },
-        data: JSON.stringify(search),
-        processData: false,
-        success: function (msg) {
-            HideOverlay();
-            console.log(msg);
-            console.log(msg.data[0].CODIGO);
 
-            var newCode = parseInt(msg.data[0].CODIGO);
+    auth.fetch("https://api.mithra.com.br/mithra/v1/search", {
+        method: "POST",
+        body: JSON.stringify(search)
+    }).then(async (res) => {
+        HideOverlay();
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then(function (json) {
+                console.log(json);
+                if (json.success) {
+                    let newCode = parseInt(json.data[0].CODIGO);
 
-            newCode = lpad(newCode + 1, 6);
-            console.log(newCode);
+                    newCode = lpad(newCode + 1, 6);
+                    console.log(newCode);
 
-            insertNewVeicle(newCode);
-        },
-        error: function (msg) {
-            HideOverlay();
-            alert(msg.responseText);
+                    insertNewVeicle(newCode);
+                }
+            });
+        } else {
+            const json_1 = await res.json();
+            alert(json_1.message);
+            throw new Error(json_1);
         }
-    });
+    }).then(responseText => console.log(responseText))
+        .catch(console.error);
 });
 
 $(document).on('click', "#new-veicle-button", function (e) {
@@ -232,6 +309,70 @@ $(document).on('click', "#new-veicle-button", function (e) {
             return;
         }
     }
-    
+
+    if ($("#cliente").val() === '') {
+        alert(`Campo CLIENTE não pode ser vazio`);
+        return;
+    }
+
     $("#modal-prev").modal("hide");
+});
+
+$(document).on('click', "#new-client-button", function (e) {
+    e.preventDefault();
+
+    var $form = $("#new-client-form :input");
+    var data = inputToHash($form);
+    for (var [key, value] of Object.entries(data)) {
+        if (value === '') {
+            alert(`Campo ${key} não pode ser vazio`);
+            return;
+        }
+    }
+
+    data['PESSOA'] = 'F';
+
+    var search = {
+        area: "CLIENT",
+        search: [{
+            field: "CODIGO",
+            operation: "LIKE",
+            value: "%"
+        }],
+        order: "CODIGO DESC",
+        limit: 1
+    };
+
+    ShowOverlay();
+    auth.fetch("https://api.mithra.com.br/mithra/v1/search", {
+        method: "POST",
+        body: JSON.stringify(search)
+    }).then((res) => {
+        HideOverlay();
+        if (res.status == 200) {
+            HideOverlay();
+            res.json().then(function (json) {
+                console.log(json);
+                if (json.success) {
+                    let newCode = parseInt(json.data[0].CODIGO);
+
+                    newCode = lpad(newCode + 1, 6);
+                    console.log(newCode);
+
+                    data["CODIGO"] = newCode;
+
+                    insertNewRecord("CLIENT", [data], (msg) => {
+                        console.log(msg);
+                        $("#cliente").val(newCode);
+                        $("#cliente-modal").modal("hide");
+                    }, (error) => {
+                        alert(error.message);
+                    });
+                }
+            });
+        } else {
+            throw Error(res.statusText)
+        }
+    }).then(responseText => logResponse("requestResponse", responseText))
+        .catch(console.error);
 });
