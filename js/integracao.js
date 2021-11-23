@@ -100,8 +100,10 @@ function saveForm() {
     var convei = {
         VEICULO: $("#veiculo").val(),
         CLIENTENT: $("#cliente").val(),
-        FILIAL: "0101"
+        FILIAL: "0101",
+        OBSCHECK: $("#observacao").val()
     };
+    
 
     console.log(convei);
 

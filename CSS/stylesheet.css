@@ -25,7 +25,6 @@ body {
     background-color: green;
 } */
 
-
 div.colunas {
   background: #ccc;
   border-radius: 5px;
@@ -52,12 +51,9 @@ label {
   font-weight: bold;
   font-size: 0.9em;
 }
-label.custom-control-label::before {
-  background: #fff;
-}
 
 .custom-select {
-width: 100%;
+  width: 100%;
 }
 
 input.form-control {
@@ -100,6 +96,20 @@ input:checked + select#porta-malas.custom-select {
   display: block;
 }
 
+.textarea-group {
+  width: 60%;
+  height: 160px;
+}
+
+.textarea-group > textarea {
+  border: 1px solid #cccccc;
+  border-radius: 15px;
+
+  width: 100%;
+
+  padding: 10px;
+}
+
 canvas {
   border: 2px dotted #cccccc;
   border-radius: 15px;
@@ -110,6 +120,11 @@ canvas {
 
 @media (max-width: 1024px) {
   canvas {
+    width: 90%;
+    height: 160px;
+  }
+
+  .textarea-group {
     width: 90%;
     height: 160px;
   }
