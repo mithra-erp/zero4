@@ -30,9 +30,6 @@ function checkIfSessionIsExpired() {
     }
     var today = new Date();
 
-    console.log(date.getTime());
-    console.log(today.getTime());
-
     if (date.getTime() < today.getTime()) {
         $.removeCookie('session_expires_in', { path: '/' });
         sessionStorage.removeItem("token");
@@ -242,6 +239,7 @@ $(document).on('click', '#btn-search-costumer', function (e) {
                 console.log(json);
                 if (json.success) {
                     console.log(json.data[0].NOME);
+                    $("#cliente").val(json.data[0].CODIGO);
                     $("#costumer-name").val(json.data[0].NOME);
                 } else {
                     cadastrarCliente();
@@ -375,6 +373,6 @@ $(document).on('click', "#new-client-button", function (e) {
         } else {
             throw Error(res.statusText)
         }
-    }).then(responseText => logResponse("requestResponse", responseText))
+    }).then(responseText => console.log(responseText))
         .catch(console.error);
 });
