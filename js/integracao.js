@@ -66,6 +66,8 @@ function insertNewRecord(area, records, success, error) {
             res.json().then(function (json) {
                 success(json);
             });
+        } else if (res.status == 401) {
+            localStorage.removeItem("token");
         } else {
             const json_1 = await res.json();
             error(json_1);
@@ -139,8 +141,10 @@ function saveForm() {
 }
 
 $(document).ready(function () {
-    var timeStamp = $.cookie('session_expires_in');
-    if (timeStamp == undefined) {
+    let timeStamp = $.cookie('session_expires_in');
+    let token = sessionStorage.getItem("token");
+    
+    if (timeStamp == undefined || token == null) {
         //$("#modalLoginForm").modal('show');
         document.location.href = 'login.html';
     } else {
