@@ -131,6 +131,8 @@ function saveForm() {
 
         insertNewRecord("ITEVEI", data, (msg) => {
             var data = msg.responseJSON;
+            alert(data.message);
+            location.reload();
         }, (error) => {
 
         });
