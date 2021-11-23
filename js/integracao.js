@@ -71,8 +71,7 @@ function insertNewRecord(area, records, success, error) {
             });
         } else {
             const json_1 = await res.json();
-            alert(json_1.message);
-            throw new Error(json_1);
+            error(json_1);
         }
     }).then(responseText => console.log(responseText))
         .catch(
@@ -147,6 +146,7 @@ $(document).ready(function () {
         document.location.href = 'login.html';
     } else {
         auth.setToken(sessionStorage.getItem("token"));
+        prepareForm();
         $("#modal-prev").modal("show");
     }
 });
