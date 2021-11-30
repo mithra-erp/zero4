@@ -74,26 +74,61 @@ function insertNewRecord(area, records, success, error) {
         .catch(console.error);
 }
 
-function insertNewVeicle(code) {
-    var $form = $("#new-veicle-form :input");
-    var data = inputToHash($form);
-    data["CODIGO"] = code;
-    data["CLASFIS"] = "87032100";
-    data["CSOSN"] = "0400";
-    data["TIPO"] = "00";
-    data["ORIGEM"] = "0";
-    data["CTLOTE"] = "N";
-    data["UM"] = "UN";
-    data["FILIAL"] = "0101";
-    data["STPIS"] = "01";
-    data["STCOF"] = "01";
+function insertOrUpdateVeicle(code) {
 
-    insertNewRecord("PRODUT", [data], (msg) => {
-        $("#veiculo").val(code);
-        saveForm();
-    }, (error) => {
-
-    });
+    let search = {
+        area: "PRODUT",
+        search: [{
+            field: "PLACA",
+            operation: "EQUAL_TO",
+            value: $('#placa').val()
+        }],
+        order: "CODIGO DESC",
+        limit: 1
+    };
+    
+    auth.fetch("https://api.mithra.com.br/mithra/v1/search", {
+        method: "POST",
+        body: JSON.stringify(search)
+    }).then(async (res) => {
+        HideOverlay();
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then(function (json) {
+                console.log(json);
+                if (json.success) {
+                    console.log(json.data[0].NOME);
+                    $("#veiculo").val(json.data[0].CODIGO);
+                    saveForm();
+                } else {
+                    var $form = $("#new-veicle-form :input");
+                    var data = inputToHash($form);
+                    data["CODIGO"] = code;
+                    data["CLASFIS"] = "87032100";
+                    data["CSOSN"] = "0400";
+                    data["TIPO"] = "00";
+                    data["ORIGEM"] = "0";
+                    data["CTLOTE"] = "N";
+                    data["UM"] = "UN";
+                    data["FILIAL"] = "0101";
+                    data["STPIS"] = "01";
+                    data["STCOF"] = "01";
+                
+                    insertNewRecord("PRODUT", [data], (msg) => {
+                        $("#veiculo").val(code);
+                        saveForm();
+                    }, (error) => {
+                
+                    });
+                }
+            });
+        } else {
+            const json_1 = await res.json();
+            alert(json_1.message);
+            throw new Error(json_1);
+        }
+    }).then(responseText => console.log(responseText))
+        .catch(console.error);
 }
 
 function saveForm() {
@@ -302,7 +337,7 @@ $(document).on('click', '#submit-button', function (e) {
                     newCode = lpad(newCode + 1, 6);
                     console.log(newCode);
 
-                    insertNewVeicle(newCode);
+                    insertOrUpdateVeicle(newCode);
                 }
             });
         } else {
