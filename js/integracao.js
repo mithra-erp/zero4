@@ -13,7 +13,7 @@ function inputToHash(obj) {
 }
 
 function checkIfSessionIsExpired() {
-    var timeStamp = GetCookie('session_expires_in');
+    let timeStamp = sessionStorage.getItem('session_expires_in');
 
     if (timeStamp == undefined) {
         return false;
@@ -24,7 +24,7 @@ function checkIfSessionIsExpired() {
     if (isNaN(date.getTime())) {
         $.removeCookie('session_expires_in', { path: '/' });
         sessionStorage.removeItem("token");
-        alert('Sua sessão expirou!');
+        alert('Sua sessão expirou 1!');
         document.location.href = 'login.html';
         return;
     }
@@ -33,7 +33,7 @@ function checkIfSessionIsExpired() {
     if (date.getTime() < today.getTime()) {
         $.removeCookie('session_expires_in', { path: '/' });
         sessionStorage.removeItem("token");
-        alert('Sua sessão expirou!');
+        alert('Sua sessão expirou 2!');
         document.location.href = 'login.html';
         return;
     }
@@ -186,9 +186,13 @@ function saveForm() {
     }, (error) => {
     });
 }
+$(window).bind('beforeunload', function(){
+    auth.storeToken();
+    return true;;
+});
 
 $(document).ready(function () {
-    let timeStamp = GetCookie('session_expires_in');
+    let timeStamp = sessionStorage.getItem('session_expires_in');
     let token = sessionStorage.getItem("token");
     
     if (timeStamp == undefined || token == null) {
@@ -196,6 +200,7 @@ $(document).ready(function () {
         document.location.href = 'login.html';
     } else {
         auth.setToken(sessionStorage.getItem("token"));
+        sessionStorage.removeItem("token");
         prepareForm();
         $("#modal-prev").modal("show");
     }

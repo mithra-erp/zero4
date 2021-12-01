@@ -11,6 +11,10 @@ class authModule {
             token = value;
         };
 
+        this.storeToken = () =>  {
+            sessionStorage.setItem("token", token);
+        };
+
         this.fetch = (resource, options) => {
             let req = new Request(resource, options);
             console.log(new URL(req.url).origin);
@@ -25,14 +29,6 @@ class authModule {
 }
 
 const auth = new authModule();
-
-function SetCookie(name, value) {
-    $.cookie(name, value, { path: '/' });
-}
-
-function GetCookie(name) {
-    return $.cookie(name, { path: '/' });
-}
 
 function DeleteAllCookies() {
     var cookies = $.cookie();
@@ -82,15 +78,11 @@ function login() {
         success: function (msg) {
             HideOverlay();
             console.log(msg);
-            SetCookie('session_expires_in', msg.expires_in);
-            //auth.setToken(msg.access_token);
+            
             sessionStorage.setItem("token", msg.access_token);
-            //$.ajaxSetup({
-            //headers: { 'Authorization': msg.token_type + ' ' + msg.access_token }
-            //});
+            sessionStorage.setItem("session_expires_in", msg.expires_in);
+            
             window.location.href = 'index.html';
-            //$("#modalLoginForm").modal("hide");
-            //$("#modal-prev").modal("show");
         },
         error: function (xhr, ajaxOptions, thrownError) {
             HideOverlay();
