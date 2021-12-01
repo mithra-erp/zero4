@@ -190,7 +190,7 @@ function saveForm() {
 $(document).ready(function () {
     let timeStamp = GetCookie('session_expires_in');
     let token = sessionStorage.getItem("token");
-    alert(timeStamp);
+    
     if (timeStamp == undefined || token == null) {
         //$("#modalLoginForm").modal('show');
         document.location.href = 'login.html';
