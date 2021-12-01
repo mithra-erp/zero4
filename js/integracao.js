@@ -13,7 +13,7 @@ function inputToHash(obj) {
 }
 
 function checkIfSessionIsExpired() {
-    var timeStamp = $.cookie('session_expires_in');
+    var timeStamp = GetCookie('session_expires_in');
 
     if (timeStamp == undefined) {
         return false;
@@ -188,9 +188,9 @@ function saveForm() {
 }
 
 $(document).ready(function () {
-    let timeStamp = $.cookie('session_expires_in');
+    let timeStamp = GetCookie('session_expires_in');
     let token = sessionStorage.getItem("token");
-    
+    alert(timeStamp);
     if (timeStamp == undefined || token == null) {
         //$("#modalLoginForm").modal('show');
         document.location.href = 'login.html';

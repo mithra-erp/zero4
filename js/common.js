@@ -30,6 +30,10 @@ function SetCookie(name, value) {
     $.cookie(name, value, { path: '/' });
 }
 
+function GetCookie(name) {
+    return $.cookie(name, { path: '/' });
+}
+
 function DeleteAllCookies() {
     var cookies = $.cookie();
 
