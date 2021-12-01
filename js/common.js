@@ -26,25 +26,6 @@ class authModule {
 
 const auth = new authModule();
 
-function SetCookie(name, value) {
-    $.cookie(name, value, { path: '/' });
-}
-
-function DeleteAllCookies() {
-    var cookies = $.cookie();
-
-    for (var i = 0; i < cookies.length; i++) {
-        $.removeCookie(cookies[i][0]);
-    }
-}
-
-function doesHttpOnlyCookieExist(name) {
-    $.cookie(name, 'something', { path: "/;SameSite=None", secure: true });
-    console.log(name + "=" + $.cookie(name));
-    console.log($.cookie(name) == undefined);
-    return $.cookie(name) == undefined;
-}
-
 // Mostra overlay para chamadas ajax.
 function ShowOverlay() {
     var over = '<div id="overlay"><div class="loader"></div></div>';
@@ -78,15 +59,11 @@ function login() {
         success: function (msg) {
             HideOverlay();
             console.log(msg);
-            SetCookie('session_expires_in', msg.expires_in);
-            //auth.setToken(msg.access_token);
+            
             sessionStorage.setItem("token", msg.access_token);
-            //$.ajaxSetup({
-            //headers: { 'Authorization': msg.token_type + ' ' + msg.access_token }
-            //});
+            sessionStorage.setItem("session_expires_in", msg.expires_in);
+            
             window.location.href = 'index.html';
-            //$("#modalLoginForm").modal("hide");
-            //$("#modal-prev").modal("show");
         },
         error: function (xhr, ajaxOptions, thrownError) {
             HideOverlay();

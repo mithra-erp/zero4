@@ -13,7 +13,7 @@ function inputToHash(obj) {
 }
 
 function checkIfSessionIsExpired() {
-    var timeStamp = $.cookie('session_expires_in');
+    var timeStamp = sessionStorage.getItem('session_expires_in');
 
     if (timeStamp == undefined) {
         return false;
@@ -22,7 +22,7 @@ function checkIfSessionIsExpired() {
     var date = new Date(timeStamp * 1000);
 
     if (isNaN(date.getTime())) {
-        $.removeCookie('session_expires_in', { path: '/' });
+        sessionStorage.removeItem('session_expires_in');
         sessionStorage.removeItem("token");
         alert('Sua sessão expirou!');
         document.location.href = 'login.html';
@@ -31,7 +31,7 @@ function checkIfSessionIsExpired() {
     var today = new Date();
 
     if (date.getTime() < today.getTime()) {
-        $.removeCookie('session_expires_in', { path: '/' });
+        sessionStorage.removeItem('session_expires_in');
         sessionStorage.removeItem("token");
         alert('Sua sessão expirou!');
         document.location.href = 'login.html';
@@ -188,7 +188,7 @@ function saveForm() {
 }
 
 $(document).ready(function () {
-    let timeStamp = $.cookie('session_expires_in');
+    let timeStamp = sessionStorage.getItem('session_expires_in');
     let token = sessionStorage.getItem("token");
     
     if (timeStamp == undefined || token == null) {
