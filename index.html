@@ -59,8 +59,13 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="placa">Placa</label>
-                                <input type="text" class="form-control" id="placa" placeholder="Ex: ABC1234"
-                                    data-campo="PLACA">
+                                <div class="input-group mb-4">
+                                    <input class="form-control py-3" type="search" id="search-veicle">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" id="btn-search-veicle"
+                                            type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cor">Cor</label>
@@ -76,7 +81,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="ano-fab">Ano Fabricação</label>
-                                <input type="number" class="form-control" id="ano-fab" placeholder="Ex: 1998"
+                                <input type="number" class="form-control" id="ano-fab" placeholder="Ex: 1997"
                                     data-campo="ANOFABRICACAO">
                             </div>
                         </div>
@@ -127,9 +132,26 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
+                                <label for="cep">Cep</label>
+                                <div class="input-group mb-4">
+                                    <input class="form-control py-3" type="search" id="search-cep">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" id="btn-search-cep"
+                                            type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="endereco">Endereço</label>
                                 <input type="text" class="form-control" id="endereco" placeholder=""
                                     data-campo="ENDERECO">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="estado">Estado</label>
+                                <input type="text" class="form-control" id="estado" placeholder=""
+                                    data-campo="ESTADO">
                             </div>
                             <div class="form-group col-md-6 input-mobile">
                                 <label for="numero">Numero</label>

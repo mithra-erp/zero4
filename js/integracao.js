@@ -240,6 +240,7 @@ function resizeCanvas() {
 }
 
 function cadastrarCliente(cgc) {
+    let cnpj = $("#search-costumer").val()
     $.confirm({
         icon: 'fa fa-warning',
         title: 'Confirmação!',
@@ -251,6 +252,7 @@ function cadastrarCliente(cgc) {
                 btnClass: 'btn-green',
                 action: function () {
                     $("#cliente-modal").modal('show');
+                    $('#cgc').val(cnpj);
                 }
             },
             somethingElse: {
@@ -263,13 +265,83 @@ function cadastrarCliente(cgc) {
     });
 }
 
+function verifica_cpf_cnpj ( valor ) {
+
+    // Garante que o valor é uma string
+    valor = valor.toString();
+    
+    // Remove caracteres inválidos do valor
+    valor = valor.replace(/[^0-9]/g, '');
+
+    // Verifica CPF
+    if ( valor.length === 11 ) {
+        return 'CPF';
+    } 
+    
+    // Verifica CNPJ
+    else if ( valor.length === 14 ) {
+        return 'CNPJ';
+    } 
+    
+    // Não retorna nada
+    else {
+        $.confirm("Cpf/Cnpj inválido!")
+        return false;
+    }
+    
+} 
+
 $(document).on('click', '#clear-button', function (e) {
     e.preventDefault();
     signaturePad.clear();
 });
 
-$(document).on('click', '#btn-search-costumer', function (e) {
+$   (document).on('click', '#btn-search-cep', function (e) {
     e.preventDefault();
+
+    var cep = $("#search-cep").val().replace(/\D/g, '');
+  
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if(validacep.test(cep)) {
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#endereco").val(dados.logradouro.toUpperCase());
+                    $("#estado").val(dados.uf.toUpperCase());
+                    $("#municipio").val(dados.localidade.toUpperCase());
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    console.log("CEP não encontrado.");
+                    $.confirm("CEP não encontrado.");  
+                }
+            });
+        } //end if.
+        else {
+            console.log("Formato de CEP inválido.");
+            $.confirm("Formato de CEP inválido.")
+        }
+    } //end if.
+    
+})
+
+$   (document).on('click', '#btn-search-costumer', function (e) {
+    e.preventDefault();
+
+    let cgc = $("#search-costumer").val()
+
+    if (!verifica_cpf_cnpj(cgc)){
+       return false
+    };
 
     let search = {
         area: "CLIENT",
@@ -309,6 +381,56 @@ $(document).on('click', '#btn-search-costumer', function (e) {
     }).then(responseText => console.log(responseText))
         .catch(console.error);
 })
+
+
+
+$   (document).on('click', '#btn-search-veicle', function (e) {
+    e.preventDefault();
+
+    let search = {
+        area: "PRODUT",
+        search: [{
+            field: "PLACA",
+            operation: "EQUAL_TO",
+            value: $('#search-veicle').val()
+        }],
+        order: "CODIGO DESC",
+        limit: 1
+    };
+
+    ShowOverlay();
+
+    auth.fetch("https://api.mithra.com.br/mithra/v1/search", {
+        method: "POST",
+        body: JSON.stringify(search)
+    }).then(async (res) => {
+        HideOverlay();
+        console.log(res);
+        if (res.status == 200) {
+            res.json().then(function (json) {
+                console.log(json);
+                if (json.success) {
+                    console.log(json.data[0].CORVEICULO);
+                    $("#cor").val(json.data[0].CORVEICULO);
+                    $("#ano-modelo").val(json.data[0].ANOMODELO);
+                    $("#ano-fab").val(json.data[0].ANOFABRICACAO);
+                    $("#chassi").val(json.data[0].CHASSI);
+                    $("#renavam").val(json.data[0].RENAVAM);
+                } else {
+                   
+                }
+            });
+        } else {
+            const json_1 = await res.json();
+            alert(json_1.message);
+            throw new Error(json_1);
+        }
+    }).then(responseText => console.log(responseText))
+        .catch(console.error);
+})
+
+
+
 
 
 $(document).on('click', '#submit-button', function (e) {
