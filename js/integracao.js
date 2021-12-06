@@ -1,6 +1,7 @@
 var veicle = null;
 var signaturePad = null;
 var canvas = document.querySelector("canvas");
+var ibger = "";
 
 function inputToHash(obj) {
     var hash = {};
@@ -318,6 +319,7 @@ $   (document).on('click', '#btn-search-cep', function (e) {
                     $("#endereco").val(dados.logradouro.toUpperCase());
                     $("#estado").val(dados.uf.toUpperCase());
                     $("#municipio").val(dados.localidade.toUpperCase());
+                    var ibge = dados.ibge ;
                 } //end if.
                 else {
                     //CEP pesquisado não foi encontrado.
@@ -368,7 +370,7 @@ $   (document).on('click', '#btn-search-costumer', function (e) {
                 if (json.success) {
                     console.log(json.data[0].NOME);
                     $("#cliente").val(json.data[0].CODIGO);
-                    $("#costumer-name").val(json.data[0].NOME);
+                    $("#costumer-name").val(json.data[0].NOME).toUpperCase();
                 } else {
                     cadastrarCliente();
                 }
@@ -507,8 +509,12 @@ $(document).on('click', "#new-client-button", function (e) {
             return;
         }
     }
+    
+    var pessoa = $('#cgc').trim().length > 11 ? "J" : "F";
 
-    data['PESSOA'] = 'F';
+    data['PESSOA'] = pessoa;
+    data['CODMUN'] = ibge;  
+   
 
     var search = {
         area: "CLIENT",
