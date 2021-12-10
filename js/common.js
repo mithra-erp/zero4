@@ -4,7 +4,7 @@ class authModule {
 
         // we have to protect the original `fetch` from getting overwritten via XSS
         // https://twitter.com/coffeetocode/status/1312998927881314305
-        const authOrigins = ["https://api.mithra.com.br", "http://localhost:8080"];
+        const authOrigins = ["https://api.mithra.com.br", "http://localhost:8080", "https://mithra-erp.github.io"];
         let token = '';
 
         this.setToken = (value) => {
