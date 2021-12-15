@@ -1,7 +1,7 @@
 var veicle = null;
 var signaturePad = null;
 var canvas = document.querySelector("canvas");
-var ibger = "";
+var ibge = "";
 
 function inputToHash(obj) {
     var hash = {};
@@ -53,7 +53,7 @@ function insertNewRecord(area, records, success, error) {
     }];
 
     ShowOverlay();
-
+console.log(JSON.stringify(json));
     auth.fetch("https://api.mithra.com.br/mithra/v1/template", {
         method: "POST",
         body: JSON.stringify(json)
@@ -301,7 +301,7 @@ $   (document).on('click', '#btn-search-cep', function (e) {
     e.preventDefault();
 
     var cep = $("#search-cep").val().replace(/\D/g, '');
-  
+    ShowOverlay();
     //Verifica se campo cep possui valor informado.
     if (cep != "") {
 
@@ -313,13 +313,14 @@ $   (document).on('click', '#btn-search-cep', function (e) {
 
             //Consulta o webservice viacep.com.br/
             $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/", function(dados) {
-
+                 
                 if (!("erro" in dados)) {
+                    HideOverlay();
                     //Atualiza os campos com os valores da consulta.
                     $("#endereco").val(dados.logradouro.toUpperCase());
                     $("#estado").val(dados.uf.toUpperCase());
                     $("#municipio").val(dados.localidade.toUpperCase());
-                    var ibge = dados.ibge ;
+                    ibge = dados.ibge ;
                 } //end if.
                 else {
                     //CEP pesquisado não foi encontrado.
@@ -333,7 +334,7 @@ $   (document).on('click', '#btn-search-cep', function (e) {
             $.confirm("Formato de CEP inválido.")
         }
     } //end if.
-    
+  
 })
 
 $   (document).on('click', '#btn-search-costumer', function (e) {
@@ -370,7 +371,7 @@ $   (document).on('click', '#btn-search-costumer', function (e) {
                 if (json.success) {
                     console.log(json.data[0].NOME);
                     $("#cliente").val(json.data[0].CODIGO);
-                    $("#costumer-name").val(json.data[0].NOME).toUpperCase();
+                    $("#costumer-name").val(json.data[0].NOME.toUpperCase());
                 } else {
                     cadastrarCliente();
                 }
@@ -510,10 +511,10 @@ $(document).on('click', "#new-client-button", function (e) {
         }
     }
     
-    var pessoa = $('#cgc').trim().length > 11 ? "J" : "F";
-
-    data['PESSOA'] = pessoa;
-    data['CODMUN'] = ibge;  
+    var pessoa = $('#cgc').val().trim().length > 11 ? "J" : "F";
+    let nomecli = $("#nome").val()
+    data["PESSOA"] = pessoa;
+    data["CODMUN"] = ibge;  
    
 
     var search = {
@@ -549,6 +550,7 @@ $(document).on('click', "#new-client-button", function (e) {
                         console.log(msg);
                         $("#cliente").val(newCode);
                         $("#cliente-modal").modal("hide");
+                        $("#costumer-name").val(nomecli);
                     }, (error) => {
                         alert(error.message);
                     });
