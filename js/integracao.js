@@ -137,6 +137,7 @@ function saveForm() {
         VEICULO: $("#veiculo").val(),
         CLIENTENT: $("#cliente").val(),
         FILIAL: "0101",
+        STATUS:"PENDENTE",
         OBSCHECK: $("#observacao").val()
     };
     
